@@ -12,6 +12,7 @@ import { localsMiddleware } from "./middlewares";
 const app = express();
 
 app.set("view engine", "pug");
+app.use("/uploads", express.static("uploads"));
 app.use(helmet());
 app.use(morgan("dev"));
 app.use(cookieParser());
