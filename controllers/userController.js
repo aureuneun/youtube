@@ -63,6 +63,38 @@ export const githubLoginCallback = async (
     return cb(null, newUser);
   } catch (e) {
     console.log(e);
+    return cb(e);
+  }
+};
+
+export const naverLogin = passport.authenticate("naver");
+
+export const naverLoginCallback = async (
+  accessToken,
+  refreshToken,
+  profile,
+  done
+) => {
+  const {
+    _json: { email, nickname: name, profile_image: avatarUrl, id },
+  } = profile;
+  try {
+    const user = await User.findOne({ email });
+    if (user) {
+      user.naverId = id;
+      user.save();
+      return done(null, user);
+    }
+    const newUser = await User.create({
+      email,
+      name,
+      naverId: id,
+      avatarUrl,
+    });
+    return done(null, newUser);
+  } catch (e) {
+    console.log(e);
+    return done(e);
   }
 };
 
