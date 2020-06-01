@@ -103,8 +103,10 @@ export const logout = (req, res) => {
   res.redirect(routes.home);
 };
 
-export const getMe = (req, res) => {
-  res.render("userDetail", { pageTitle: "User Detail", user: req.user });
+export const getMe = async (req, res) => {
+  const { user: me } = req;
+  const user = await User.findById({ _id: me._id }).populate("videos");
+  res.render("userDetail", { pageTitle: "User Detail", user });
 };
 
 export const userDetail = async (req, res) => {
@@ -133,7 +135,7 @@ export const postEditProfile = async (req, res) => {
     await User.findByIdAndUpdate(id, {
       name,
       email,
-      avatarUrl: file ? file.path : req.user.avatarUrl,
+      avatarUrl: file ? file.location : req.user.avatarUrl,
     });
     res.redirect(routes.me);
   } catch (e) {
