@@ -22,3 +22,12 @@ block content
         span.video__comment-number 1 comment
       else
         span.video__comment-number #{video.comments.length} comments
+      if loggedUser
+        form.add__comment
+          input(type="text", name="comment", placeHolder="Add a comment")
+      ul.video__comments-list
+        each comment in video.comments.reverse()
+          li(id=`${comment.id}`)
+            span.text__comment #{comment.text}
+            if loggedUser && comment.creator == loggedUser.id
+              .delete__comment="❌"

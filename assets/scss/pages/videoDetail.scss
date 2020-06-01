@@ -38,9 +38,44 @@
     }
   }
   .video__comments {
+    width: 50vw;
     margin-top: 25px;
+    text-align: center;
     .video__comment-number {
       font-size: 18px;
+    }
+    .add__comment {
+      margin-top: 25px;
+      width: 100%;
+      input {
+        width: 100%;
+      }
+    }
+    .video__comments-list {
+      margin-top: 50px;
+      li {
+        height: 10vh;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-radius: 20px;
+        &:not(:last-child) {
+          margin-bottom: 15px;
+        }
+        .text__comment {
+          padding: 0 10px;
+          word-break: break-all;
+          overflow: scroll;
+          height: 100%;
+        }
+        .delete__comment {
+          height: 100%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      }
     }
   }
 }

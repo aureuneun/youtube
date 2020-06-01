@@ -32,6 +32,13 @@ const GITHUB_CALLBACK = "/auth/github/callback";
 const NAVER = "/auth/naver";
 const NAVER_CALLBACK = "/auth/naver/callback";
 
+// API
+
+const API = "/api";
+const REGISTER_VIEW = "/:id/view";
+const ADD_COMMENT = "/:id/comment";
+const REMOVE_COMMENT = "/:id/remove";
+
 const routes = {
   home: HOME,
   join: JOIN,
@@ -76,6 +83,28 @@ const routes = {
   naver: NAVER,
   naverCallback: NAVER_CALLBACK,
   me: ME,
+  api: API,
+  registerView: (id) => {
+    if (id) {
+      return `/api/${id}/view`;
+    } else {
+      return REGISTER_VIEW;
+    }
+  },
+  addComment: (id) => {
+    if (id) {
+      return `/api/${id}/comment`;
+    } else {
+      return ADD_COMMENT;
+    }
+  },
+  removeComment: (id) => {
+    if (id) {
+      return `/api/${id}/remove`;
+    } else {
+      return REMOVE_COMMENT;
+    }
+  },
 };
 
 export default routes;
