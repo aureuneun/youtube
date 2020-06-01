@@ -7,6 +7,7 @@
   "author": "kec",
   "license": "MIT",
   "dependencies": {
+    "@babel/cli": "^7.10.1",
     "@babel/core": "^7.9.6",
     "@babel/node": "^7.8.7",
     "@babel/polyfill": "^7.8.7",
@@ -41,9 +42,15 @@
     "webpack-cli": "^3.3.11"
   },
   "scripts": {
-    "dev:server": "nodemon --exec babel-node init.js --ignore '.scss' --ignore 'static' ",
-    "dev:assets": "WEBPACK_ENV=development webpack -w",
-    "build:assets": "WEBPACK_ENV=production webpack:"
+    "dev:server": "nodemon --exec babel-node src/init.js --ignore '.scss' --ignore 'static' ",
+    "dev:assets": "cd src && WEBPACK_ENV=development webpack -w",
+    "build:assets": "cd src && WEBPACK_ENV=production webpack",
+    "build:server": "babel src --out-dir dist --ignore 'src/assets','src/static','src/webpack.config.js'",
+    "copyAll": "cp -R src/static dist && cp -R src/views dist",
+    "build": "yarn build:assets && yarn build:server && yarn copyAll",
+    "prebuild": "rm -rf dist",
+    "start": "node dist/init.js",
+    "prestart": "yarn build"
   },
   "browserslist": {
     "production": [
