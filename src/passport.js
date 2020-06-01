@@ -15,7 +15,9 @@ passport.use(
     {
       clientID: process.env.GITHUB_CLIENT_ID,
       clientSecret: process.env.GITHUB_CLIENT_SECRET,
-      callbackURL: `http://localhost:5000${routes.githubCallback}`,
+      callbackURL: process.env.PRODUCTION
+        ? `https://newwetube.herokuapp.com${routes.githubCallback}`
+        : `http://localhost:5000${routes.githubCallback}`,
     },
     githubLoginCallback
   )
@@ -26,7 +28,9 @@ passport.use(
     {
       clientID: process.env.NAVER_CLIENT_ID,
       clientSecret: process.env.NAVER_CLIENT_SECRET,
-      callbackURL: `http://localhost:5000${routes.naverCallback}`,
+      callbackURL: process.env.PRODUCTION
+        ? `https://newwetube.herokuapp.com${routes.naverCallback}`
+        : `http://localhost:5000${routes.naverCallback}`,
     },
     naverLoginCallback
   )

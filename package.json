@@ -49,7 +49,7 @@
     "copyAll": "cp -R src/static dist && cp -R src/views dist",
     "build": "yarn build:assets && yarn build:server && yarn copyAll",
     "prebuild": "rm -rf dist",
-    "start": "node dist/init.js",
+    "start": "PRODUCTION=true node dist/init.js",
     "prestart": "yarn build"
   },
   "browserslist": {
