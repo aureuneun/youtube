@@ -39,10 +39,7 @@ export const postLogin = passport.authenticate("local", {
   failureFlash: "Check email and/or password",
 });
 
-export const githubLogin = passport.authenticate("github", {
-  successFlash: "Welcome",
-  failureFlash: "Can't log in at this time",
-});
+export const githubLogin = passport.authenticate("github");
 
 export const githubLoginCallback = async (
   accessToken,
@@ -73,10 +70,7 @@ export const githubLoginCallback = async (
   }
 };
 
-export const naverLogin = passport.authenticate("naver", {
-  successFlash: "Welcome",
-  failureFlash: "Can't log in at this time",
-});
+export const naverLogin = passport.authenticate("naver");
 
 export const naverLoginCallback = async (
   accessToken,
