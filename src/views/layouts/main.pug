@@ -1,3 +1,5 @@
+include ../mixins/message
+
 <!DOCTYPE html>
 html(lang="en")
   head
@@ -8,6 +10,9 @@ html(lang="en")
     link(rel="stylesheet", href="/static/styles.css")
     title #{pageTitle} | #{siteName}
   body
+    if messages
+      +message(messages)
+
     include ../partials/header
     main
       block content
