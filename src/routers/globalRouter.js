@@ -25,7 +25,11 @@ globalRouter.post(routes.login, onlyPublic, postLogin);
 globalRouter.get(routes.github, githubLogin);
 globalRouter.get(
   routes.githubCallback,
-  passport.authenticate("github", { failureRedirect: routes.login }),
+  passport.authenticate("github", {
+    failureRedirect: routes.login,
+    successFlash: "Welcome",
+    failureFlash: "Can't log in at this time",
+  }),
   (req, res) => {
     res.redirect(routes.home);
   }
@@ -34,7 +38,11 @@ globalRouter.get(
 globalRouter.get(routes.naver, naverLogin);
 globalRouter.get(
   routes.naverCallback,
-  passport.authenticate("naver", { failureRedirect: routes.login }),
+  passport.authenticate("naver", {
+    failureRedirect: routes.login,
+    successFlash: "Welcome",
+    failureFlash: "Can't log in at this time",
+  }),
   (req, res) => {
     res.redirect(routes.home);
   }
